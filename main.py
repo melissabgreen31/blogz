@@ -33,11 +33,15 @@ def main_blog():
     #if there;s an id, show one post
     #if theres not, show all posts
     blog=Blog.query.all()
-    if request.args.get('id')== True:
-        single_blog = Blog.query.filter_by(id).all()
-        return render_template('blog.html', single_blog=blog)
-    else:
+    if request.args.get('id') is None:
         return render_template('blog.html', blog=blog)
+        
+    else:
+        id= request.args.get('id')
+        blog_id = Blog.query.filter_by(id=id).first()
+
+
+        return render_template('singlepost.html', blog= blog_id)
 
 
     
@@ -67,6 +71,8 @@ def create_post():
         blog = Blog(title = blog_title, body= blog_body)
         db.session.add(blog)
         db.session.commit()
+        blog_id = blog.id
+        return redirect('/blog?id={}'.format(blog_id))
     return render_template('newpost.html')
 
     
