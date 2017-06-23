@@ -5,7 +5,11 @@
     {% for i in blog %}
         <p><h2>
             <a href="/blog?id={{i.id}}">{{i.title}}</a></h2>
-        {{i.body}}</p><hr>
+        {{i.body}}</p>
+        
+        <p><ul>
+           Written by <a href="/blog?user={{i.owner.id}}">{{i.owner.username}}</a>
+        </p></ul><hr>
         
     {% endfor%}
 

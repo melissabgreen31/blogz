@@ -7,7 +7,7 @@
         <p><h2>
             {{blog.title}}</h2>
         {{blog.body}}</p>
-        
+        Written by <a href="/blog?user={{blog.owner.id}}">{{blog.owner.username}}</a>
     
 
 {% endblock %}   
